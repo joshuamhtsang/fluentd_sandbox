@@ -9,13 +9,13 @@ Playing around with fluentd and linking with grafana.
 #########################################################
 
 Pull the image from dockerhub:
-
+```
 $ docker pull fluent/fluentd
-
+```
 Run the image [source: https://hub.docker.com/r/fluent/fluentd/]:
-
+```
 $ docker run -d -p 24224:24224 -p 24224:24224/udp -v $(pwd)/log:/fluentd/log fluent/fluentd
-
+```
 This will initiate and run fluentd in a docker container, using the config file located
 inside the container here:
 
@@ -23,9 +23,13 @@ inside the container here:
 
 You can view this file by initiating a 'sh' shell in the docker container:
 
+```
 $ docker exec -it <container_name> sh
 # cat /fluentd/etc/fluent.conf
+```
 
+
+```
 -----------------------------------------------------------
 <source>
   @type  forward
@@ -61,6 +65,7 @@ $ docker exec -it <container_name> sh
   </match>
 </label>
 ----------------------------------------------------------
+```
 
 #################################################
 ### Running fluentd with a custom config file ###
