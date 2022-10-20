@@ -77,15 +77,17 @@ Note: I changed the source port 8888 in the config to 24224 to match the port ex
 
 To run fluentd with this config file, mount the root directory into the container,
 and tell fluentd to use this config file with the '-c' option:
-
+```
 $ docker run -p 24224:24224 -p 24224:24224/udp -v $(pwd):/fluentd/etc -v $(pwd)/log:/fluentd/log fluent/fluentd fluentd -c /fluentd/etc/in_http_out_stdout.conf
-
+```
 Send a HTTP POST request to fluentd with a JSON data attachment:
-
+```
 $ curl -i -X POST -d 'json={"action":"login","user":2}' http://localhost:24224/test.cycle
-
+```
 fluentd's console output will happily acknowledge receipt of this json:
-
+```
 > 2022-10-20 15:16:11.745130390 +0000 test.cycle: {"action":"login","user":2}
+```
+
 
 
