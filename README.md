@@ -115,3 +115,19 @@ $ docker run -p 24224:24224 -p 24224:24224/udp -v $(pwd):/fluentd/etc -v $(pwd)/
 
 The logs will appear under the log/ directory.
 
+
+
+############
+### Loki ###
+############
+
+Run loki and promtail:
+https://grafana.com/docs/loki/latest/installation/docker/
+
+
+Run grafana:
+https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/
+
+Access grafana web app:
+http://localhost:3000/login
+
