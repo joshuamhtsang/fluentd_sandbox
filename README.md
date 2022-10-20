@@ -89,5 +89,29 @@ fluentd's console output will happily acknowledge receipt of this json:
 > 2022-10-20 15:16:11.745130390 +0000 test.cycle: {"action":"login","user":2}
 ```
 
+####################################
+### Using the file output plugin ###
+####################################
 
+The config file 'in_http_out_file.conf' output logs to a file, instead of
+'stdout' like above example.
+
+[Source: https://docs.fluentd.org/output/file]
+
+```
+<match test.file>
+  @type file
+  path /fluentd/log
+  <buffer>
+    timekey 5s
+    timekey_use_utc true
+    timekey_wait 10m
+  </buffer>
+</match>
+```
+```
+$ docker run -p 24224:24224 -p 24224:24224/udp -v $(pwd):/fluentd/etc -v $(pwd)/log:/fluentd/log fluent/fluentd fluentd -c /fluentd/etc/in_http_out_file.conf
+```
+
+The logs will appear under the log/ directory.
 
