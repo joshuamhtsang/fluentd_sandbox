@@ -1,0 +1,29 @@
+version: '3'
+services:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - '3000:3000'
+    depends_on:
+      - influxdb
+  fluentd:
+    image: fluentd-influxdb
+    build: ./fluentd
+    ports:
+      - '24224:24224'
+    volumes:
+      - './fluentd/fluent.conf:/fluentd/etc/fluent.conf'
+      - './logs/:/var/log/'
+  influxdb:
+    image: influxdb
+    ports:
+      - '8086:8086'
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin
+      - DOCKER_INFLUXDB_INIT_ORG=dstl
+      - DOCKER_INFLUXDB_INIT_BUCKET=demo2
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=haha-jaja
+    volumes:
+      - './data:/var/lib/influxdb'
