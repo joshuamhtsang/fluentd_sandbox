@@ -4,9 +4,9 @@ one from this github repo:
 https://github.com/Coac/fluentd-influxdb-grafana
 
 To run:
-
+```
 $ docker compose up
-
+```
 However, there are problems getting grafana to add
 influxdb as a data source.  I suspect the docker compose 
 yaml above is based on the older influxdb v1.8, while the
