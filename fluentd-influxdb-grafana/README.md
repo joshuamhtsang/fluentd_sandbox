@@ -1,3 +1,5 @@
+# fluentd-influxdb2-grafana stack docker compose implementation
+
 The docker compose yaml in this directory is based on the
 one from this github repo:
 
