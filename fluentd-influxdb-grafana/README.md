@@ -57,9 +57,38 @@ InFluxDB Details:
       Token : hahajaja
       Default Bucket : demo2
 ```
+
+Click 'Save and Test' and you should see a green tick with: 
+```
+datasource is working. 3 buckets found
+```
+
+Now make a new Dashboard with a new panel.  The Flux query is:
+```
+from(bucket: "demo2")
+  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
+  |> filter(fn: (r) =>
+    r._measurement == "flows" and
+    r._field == "bar"
+  )
+```
+
+Click 'Apply'.
+
+To actually create data for fluentd to push to influxdb, run the
+shell script which appends JSONs to the log file 'logs/logs.json':
+```
+$ bash generate_logs.sh
+```
+
+
+###############################
+### Troubleshooting Journal ###
+###############################
+
 Update 26/10/2022: I noticed from 'docker ps' that it was only spinning up
-the grafana and fluentd containers, and not the influxdb container.  To
-isolate the problem, I created another docker compose yaml file with just
+2/3 containers: the grafana and fluentd containers, and not the influxdb container.  
+To isolate the problem, I created another docker compose yaml file with just
 the influxdb container, and noticed an error:  'password too short'.  So I 
 now set a longer password for DOCKER_INFLUXDB_INIT_PASSWORD.  'docker ps'
 now yields 3 containers running, and grafana can now add the influxdb
