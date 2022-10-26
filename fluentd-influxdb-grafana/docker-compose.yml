@@ -25,5 +25,6 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=soundmouse
       - DOCKER_INFLUXDB_INIT_BUCKET=demo2
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=hahajaja
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
     volumes:
       - './data:/var/lib/influxdb'
