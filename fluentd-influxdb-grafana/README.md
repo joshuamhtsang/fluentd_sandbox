@@ -35,10 +35,16 @@ $ docker run -d -p 8086:8086 \
 In grafana, add a new data source and use the 'Flux' query
 language and match the settings to the environmental variables
 set in the docker compose file.
-
-This seems to get a bit further but I still can't be a successful 
-addition of influxdb data source into grafana.  Very frustrating.
-
+```
+Query Language : Flux
+URL : http://influxdb:8086
+Auth : Basic Auth (On)
+Basic Auth Details: User (admin), PW (adminadmin)
+InFluxDB Details: 
+      Organisation : soundmouse
+      Token : hahajaja
+      Default Bucket : demo2
+```
 Update 26/10/2022: I noticed from 'docker ps' that it was only spinning up
 the grafana and fluentd containers, and not the influxdb container.  To
 isolate the problem, I created another docker compose yaml file with just
