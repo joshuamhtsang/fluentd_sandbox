@@ -14,7 +14,7 @@ latest release is 2.0+.
 
 I've sought inspiration from the offical dockerhub:
 
-[https://hub.docker.com/_/influxdb]_
+[https://hub.docker.com/_/influxdb]
 
 Especially the docker run example for influxdb 2.0+ there:
 
