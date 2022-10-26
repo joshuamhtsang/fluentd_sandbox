@@ -39,3 +39,11 @@ set in the docker compose file.
 This seems to get a bit further but I still can't be a successful 
 addition of influxdb data source into grafana.  Very frustrating.
 
+Update 26/10/2022: I noticed from 'docker ps' that it was only spinning up
+the grafana and fluentd containers, and not the influxdb container.  To
+isolate the problem, I created another docker compose yaml file with just
+the influxdb container, and noticed an error:  'password too short'.  So I 
+now set a longer password for DOCKER_INFLUXDB_INIT_PASSWORD.  'docker ps'
+now yields 3 containers running, and grafana can now add the influxdb
+data source.  WOOHOO!
+

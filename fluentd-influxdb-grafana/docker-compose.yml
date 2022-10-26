@@ -21,9 +21,9 @@ services:
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=adminadmin
       - DOCKER_INFLUXDB_INIT_ORG=dstl
       - DOCKER_INFLUXDB_INIT_BUCKET=demo2
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=haha-jaja
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=hahajaja
     volumes:
       - './data:/var/lib/influxdb'
