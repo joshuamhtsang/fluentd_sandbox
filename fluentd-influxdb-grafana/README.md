@@ -3,14 +3,26 @@ one from this github repo:
 
 https://github.com/Coac/fluentd-influxdb-grafana
 
-To run:
+To run, in this directory run:
 ```
-$ docker compose up
+$ docker compose up --build
 ```
-However, there are problems getting grafana to add
-influxdb as a data source.  I suspect the docker compose 
-yaml above is based on the older influxdb v1.8, while the
-latest release is 2.0+.
+
+To stop:
+```
+$ docker compose down
+```
+
+Many changes were needed (relative to Coac's exmaple) to make it work:
+  1.  influxdb 2.0 has new set of env vars to initialize (see docker-compose.yml)
+  2.  Need to install fluentd output plugin 'fluent-plugin-influxdb-v2' (see fluentd/Dockerfile)
+  3.  Need to understand fluentd output plugin:  [https://github.com/influxdata/influxdb-plugin-fluent]
+      (see fluentd/fluent.conf)
+  4.  Flux requests instead of InfluxQL
+
+Once running, it looks like this:
+![Alt text](grafana_ss_1.png?raw=true "Optional Title")
+
 
 I've sought inspiration from the offical dockerhub:
 
@@ -52,4 +64,5 @@ the influxdb container, and noticed an error:  'password too short'.  So I
 now set a longer password for DOCKER_INFLUXDB_INIT_PASSWORD.  'docker ps'
 now yields 3 containers running, and grafana can now add the influxdb
 data source.  WOOHOO!
+
 
