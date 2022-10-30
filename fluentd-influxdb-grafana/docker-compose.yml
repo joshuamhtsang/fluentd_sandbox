@@ -8,10 +8,7 @@ services:
       - influxdb
   fluentd:
     image: fluentd-influxdb
-    build: 
-      context: ./fluentd
-      args:
-        - -c=/fluentd/etc/fluent.conf
+    build: ./fluentd
     ports:
       - '24224:24224'
     volumes:

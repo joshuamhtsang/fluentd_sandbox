@@ -83,6 +83,12 @@ shell script which appends JSONs to the log file 'logs/logs.json':
 $ bash generate_logs.sh
 ```
 
+####################################
+### http curl of json to fluentd ###
+####################################
+
+$ curl -X POST -d 'json={"time":1667149335,"foo":"foo","bar":1235}' http://localhost:24224/default.logs -v
+
 
 ###############################
 ### Troubleshooting Journal ###
